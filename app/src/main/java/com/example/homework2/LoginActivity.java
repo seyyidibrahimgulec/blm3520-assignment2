@@ -1,64 +1,49 @@
 package com.example.homework2;
 
-import android.app.Activity;
-
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
-    Button b1,b2;
-    EditText ed1,ed2;
-
-    TextView tx1;
-    int counter = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        b1 = (Button)findViewById(R.id.button);
-        ed1 = (EditText)findViewById(R.id.editText);
-        ed2 = (EditText)findViewById(R.id.editText2);
+        ViewPager viewPager = findViewById(R.id.viewPager);
 
-        b2 = (Button)findViewById(R.id.button2);
-        tx1 = (TextView)findViewById(R.id.textView3);
-        tx1.setVisibility(View.GONE);
+        AuthenticationPagerAdapter pagerAdapter = new AuthenticationPagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragmet(new LoginFragment());
+        pagerAdapter.addFragmet(new RegisterFragment());
+        viewPager.setAdapter(pagerAdapter);
+    }
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(ed1.getText().toString().equals("admin") &&
-                        ed2.getText().toString().equals("admin")) {
-                    Toast.makeText(getApplicationContext(),
-                            "Redirecting...",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
+    class AuthenticationPagerAdapter extends FragmentPagerAdapter {
+        private ArrayList<Fragment> fragmentList = new ArrayList<>();
 
-                    tx1.setVisibility(View.VISIBLE);
-                    tx1.setBackgroundColor(Color.RED);
-                    counter--;
-                    tx1.setText(Integer.toString(counter));
+        public AuthenticationPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-                    if (counter == 0) {
-                        b1.setEnabled(false);
-                    }
-                }
-            }
-        });
+        @Override
+        public Fragment getItem(int i) {
+            return fragmentList.get(i);
+        }
 
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        void addFragmet(Fragment fragment) {
+            fragmentList.add(fragment);
+        }
     }
 }
