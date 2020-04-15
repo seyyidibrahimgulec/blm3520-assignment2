@@ -12,4 +12,10 @@
     <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
+    <string name="menu_title">Activities Menu</string>
+    <string name="login_activity">Login Activity</string>
+    <string name="email_activity">Email Activity</string>
+    <string name="list_activity">User List Activity</string>
+    <string name="settings_activity">User Settings Activity</string>
+    <string name="note_activity">Note Activity</string>
 </resources>
