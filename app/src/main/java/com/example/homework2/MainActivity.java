@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
         Button buttonOne = findViewById(R.id.buttonOne);
         buttonOne.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("Button Clicked");
-
                 Intent activity2Intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(activity2Intent);
             }
