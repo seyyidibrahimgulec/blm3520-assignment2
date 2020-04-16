@@ -1,11 +1,13 @@
 package com.example.homework2;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ public class LoginFragment extends Fragment {
 
     private TextView tx1;
     private int counter = 3;
+    private String email_str, password_str;
+    private SharedPreferences preferences;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -44,11 +48,15 @@ public class LoginFragment extends Fragment {
 
         tx1 = (TextView) view.findViewById(R.id.counter_text);
 
+        email_str = ed1.getText().toString();
+        password_str = ed2.getText().toString();
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ed1.getText().toString().equals("admin") &&
-                        ed2.getText().toString().equals("admin")) {
+                if(preferences.getString(email_str, null) == password_str) {
                     Toast.makeText(getActivity().getApplicationContext(),
                             "Redirecting...",Toast.LENGTH_SHORT).show();
                 }else{

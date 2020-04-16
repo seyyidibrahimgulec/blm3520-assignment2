@@ -1,10 +1,12 @@
 package com.example.homework2;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends Fragment {
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     private Button register_btn;
     private EditText name_et, email_et, password_et, repassword_et;
 
@@ -35,19 +39,32 @@ public class RegisterFragment extends Fragment {
         password_et = (EditText) view.findViewById(R.id.et_password);
         repassword_et = (EditText) view.findViewById(R.id.et_repassword);
 
+        final String name_str = name_et.getText().toString();
+        final String email_str = email_et.getText().toString();
+        final String password_str = password_et.getText().toString();
+        final String repassword_str = repassword_et.getText().toString();
+
         register_btn = (Button) view.findViewById(R.id.btn_register);
         register_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                User user = new User("ibrahim gulec", "ibrahim@email.com", "12345678");
-                if(password_et.getText() != repassword_et.getText()) {
+                if(!password_str.equals(repassword_str)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Passwords does not match",Toast.LENGTH_SHORT).show();
+                    name_et.setText("");
+                    email_et.setText("");
+                    password_et.setText("");
+                    repassword_et.setText("");
+                } else if(name_str.equals("") || email_str.equals("") || password_str.equals("")) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Fields cannot be empty",Toast.LENGTH_SHORT).show();
+                    name_et.setText("");
+                    email_et.setText("");
+                    password_et.setText("");
+                    repassword_et.setText("");
                 } else {
-                    System.out.println(name_et.getText());
-                    System.out.println(email_et.getText());
-                    System.out.println(password_et.getText());
-                    System.out.println(repassword_et.getText());
+                    preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                    editor = preferences.edit();
+                    editor.putString(email_str, password_str);
+                    editor.commit();
                 }
-                System.out.println(user);
             }
         });
 
