@@ -61,7 +61,7 @@ public class LoginFragment extends Fragment {
                 if(password_str.equals(preferences.getString(email_str, null))) {
                     Toast.makeText(getActivity().getApplicationContext(),
                             "User successfully logged in",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MenuActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();

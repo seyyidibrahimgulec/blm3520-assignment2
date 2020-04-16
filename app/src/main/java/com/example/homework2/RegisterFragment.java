@@ -69,7 +69,7 @@ public class RegisterFragment extends Fragment {
                     editor.putString(email_str, password_str);
                     editor.commit();
                     Toast.makeText(getActivity().getApplicationContext(), "User successfully registered",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 }
             }
