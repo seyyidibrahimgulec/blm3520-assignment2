@@ -2,11 +2,17 @@ package com.example.homework2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -21,9 +27,10 @@ public class UserListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
 
-        ArrayList<String> keys = new ArrayList<>();
+        final ArrayList<String> keys = new ArrayList<>();
+        final ImageView imgView = (ImageView)findViewById(R.id.dialog_imageview);
 
-
+        imgView.setVisibility(View.INVISIBLE);
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Map<String, ?> allEntries = preferences.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
@@ -39,6 +46,20 @@ public class UserListActivity extends AppCompatActivity {
                 (this, android.R.layout.simple_list_item_1, android.R.id.text1, keys);
 
         list.setAdapter(dataAdaptor);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                AlertDialog.Builder alertadd = new AlertDialog.Builder(UserListActivity.this);
+                LayoutInflater factory = LayoutInflater.from(UserListActivity.this);
+                final View view1 = factory.inflate(R.layout.activity_user_list, null);
+                alertadd.setView(view1);
+                alertadd.setMessage("Username :" + keys.get(position) + "\n" + "Password :" + preferences.getString(keys.get(position), null));
+                alertadd.show();
+            }
+        });
 
     }
 }
