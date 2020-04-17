@@ -44,5 +44,14 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(activity2Intent);
             }
         });
+
+        Button buttonFive = findViewById(R.id.buttonFive);
+        buttonFive.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent activity2Intent = new Intent(getApplicationContext(), NoteActivity.class);
+                startActivity(activity2Intent);
+            }
+        });
+
     }
 }
