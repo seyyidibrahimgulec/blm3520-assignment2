@@ -18,4 +18,8 @@
     <string name="list_activity">User List Activity</string>
     <string name="settings_activity">User Settings Activity</string>
     <string name="note_activity">Note Activity</string>
+    <string name="to">To</string>
+    <string name="subject">Subject</string>
+    <string name="content">Content</string>
+    <string name="send">Send</string>
 </resources>

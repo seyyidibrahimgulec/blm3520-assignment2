@@ -20,5 +20,12 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(activity2Intent);
             }
         });
+        Button buttonTwo = findViewById(R.id.buttonTwo);
+        buttonTwo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent activity2Intent = new Intent(getApplicationContext(), EmailActivity.class);
+                startActivity(activity2Intent);
+            }
+        });
     }
 }
