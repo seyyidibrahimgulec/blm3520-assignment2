@@ -23,8 +23,8 @@ public class RegisterFragment extends Fragment {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private Button register_btn;
-    private EditText name_et, email_et, password_et, repassword_et;
-    private String name_str, email_str, password_str, repassword_str;
+    private EditText name_et, username_et, password_et, repassword_et;
+    private String name_str, username_str, password_str, repassword_str;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -42,31 +42,31 @@ public class RegisterFragment extends Fragment {
         register_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 name_et = (EditText) view.findViewById(R.id.et_name);
-                email_et = (EditText) view.findViewById(R.id.et_email);
+                username_et = (EditText) view.findViewById(R.id.et_username);
                 password_et = (EditText) view.findViewById(R.id.et_password);
                 repassword_et = (EditText) view.findViewById(R.id.et_repassword);
 
                 name_str = name_et.getText().toString();
-                email_str = email_et.getText().toString();
+                username_str = username_et.getText().toString();
                 password_str = password_et.getText().toString();
                 repassword_str = repassword_et.getText().toString();
 
                 if(!password_str.equals(repassword_str)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Passwords does not match",Toast.LENGTH_SHORT).show();
                     name_et.setText("");
-                    email_et.setText("");
+                    username_et.setText("");
                     password_et.setText("");
                     repassword_et.setText("");
-                } else if(name_str.equals("") || email_str.equals("") || password_str.equals("")) {
+                } else if(name_str.equals("") || username_str.equals("") || password_str.equals("")) {
                     Toast.makeText(getActivity().getApplicationContext(), "Fields cannot be empty",Toast.LENGTH_SHORT).show();
                     name_et.setText("");
-                    email_et.setText("");
+                    username_et.setText("");
                     password_et.setText("");
                     repassword_et.setText("");
                 } else {
                     preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
                     editor = preferences.edit();
-                    editor.putString(email_str, password_str);
+                    editor.putString(username_str, password_str);
                     editor.commit();
                     Toast.makeText(getActivity().getApplicationContext(), "User successfully registered",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);

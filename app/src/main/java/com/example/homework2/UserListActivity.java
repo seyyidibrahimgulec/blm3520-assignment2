@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class UserListActivity extends AppCompatActivity {
     private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
     private String current_key;
 
 
@@ -34,12 +33,12 @@ public class UserListActivity extends AppCompatActivity {
 
         }
 
-        ListView listemiz = (ListView) findViewById(R.id.listView1);
+        ListView list = (ListView) findViewById(R.id.listView1);
 
-        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
+        ArrayAdapter<String> dataAdaptor=new ArrayAdapter<String>
                 (this, android.R.layout.simple_list_item_1, android.R.id.text1, keys);
 
-        listemiz.setAdapter(veriAdaptoru);
+        list.setAdapter(dataAdaptor);
 
     }
 }
