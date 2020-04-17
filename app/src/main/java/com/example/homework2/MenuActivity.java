@@ -13,6 +13,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
         Button buttonOne = findViewById(R.id.buttonOne);
         buttonOne.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -24,6 +25,14 @@ public class MenuActivity extends AppCompatActivity {
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent activity2Intent = new Intent(getApplicationContext(), EmailActivity.class);
+                startActivity(activity2Intent);
+            }
+        });
+
+        Button buttonThree = findViewById(R.id.buttonThree);
+        buttonThree.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent activity2Intent = new Intent(getApplicationContext(), UserListActivity.class);
                 startActivity(activity2Intent);
             }
         });
